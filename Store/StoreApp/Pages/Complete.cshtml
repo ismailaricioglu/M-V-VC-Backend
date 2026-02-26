@@ -1,0 +1,18 @@
+@page
+
+<div class="text-center">
+    <h6 class="display-6">Thanks</h6>
+    <p>Thanksa for placing order #@OrderId</p>
+    <p>We'll ship your goods as soon as possible.</p>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Return to Store</a>
+</div>
+
+
+@functions
+{
+    /// <summary>
+    /// Razor Pages'te GET isteklerinde model baðlamayý (model binding) etkinleþtiren bir özelliktir. Normalde model baðlama sadece POST isteklerinde çalýþýr, ancak bu özellik GET isteklerinde de query string veya route values'lardan gelen verileri doðrudan sayfa modelindeki özelliklere baðlamanýza olanak tanýr.
+    /// </summary>
+    [BindProperty(SupportsGet = true)]
+    public String? OrderId { get; set; }
+}

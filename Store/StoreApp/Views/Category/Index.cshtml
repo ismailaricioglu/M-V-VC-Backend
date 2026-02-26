@@ -1,0 +1,18 @@
+<!-- Bu sayfanın modeli olarak bir kategori listesi kullanılıyor -->
+@model IEnumerable<Category>
+
+<div class="text-center my-3">
+    <h6 class="display-6">
+        Categories
+    </h6>
+</div>
+
+<!-- Bootstrap sınıfları kullanılarak bir satır oluşturuluyor -->
+<ul class="list-group my-3">
+    <!-- Modeldeki her bir kategori için döngü başlatılıyor -->
+    @foreach (var cat in Model)
+    {
+        <!-- Kategori li' ye ekleniyor -->
+        <li class="list-group-item">@cat.CategoryName</li>
+    }
+</ul>

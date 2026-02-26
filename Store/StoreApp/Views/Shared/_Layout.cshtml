@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTK Akademi - @ViewData["Title"]</title>
+    <!-- Bootstrap CSS dosyası -->
+    <link rel="stylesheet" asp-append-version="true" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <!-- Siteye özgü CSS dosyası -->
+    <link rel="stylesheet" asp-append-version="true" href="~/css/site.css" />
+    <!-- Font Awesome CSS dosyası -->
+    <link rel="stylesheet" asp-append-version="true" href="~/lib/font-awesome/css/all.css" />
+</head>
+
+<body>
+    <header>
+        <!-- Navbar kısmını dahil eder -->
+        <partial name="_Navbar" />
+        <!-- Header bölümü için yer tutucu -->
+        @RenderSection("Header", false)
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <!-- Ana içerik burada render edilir -->
+            @RenderBody()
+        </main>
+    </div>
+    <footer>
+        <!-- Footer bölümü için yer tutucu -->
+        @RenderSection("Footer", false)
+        <!-- Footer kısmını dahil eder -->
+        <partial name="_Footer" />
+    </footer>
+    <!-- jQuery kütüphanesi -->
+    <script asp-append-version="true" src="~/lib/jquery/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript dosyası -->
+    <script asp-append-version="true" src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Siteye özgü JavaScript dosyası -->
+    <script asp-append-version="true" src="~/js/site.js"></script>
+    <!-- Font Awesome JavaScript dosyası -->
+    <script asp-append-version="true" src="~/lib/font-awesome/js/all.min.js"></script>
+    <!--
+    Ekstra scriptler için yer tutucu
+        Bu kod Layout şablonlarında belirli bir bölümün (section) dinamik olarak render edilmesini sağlar.
+        Gelişmiş sayfa düzenleri için kullanışlıdır, çünkü her sayfaya özel <script> eklemeye izin verir, ancak eklenmesi zorunlu değildir.
+    -->
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

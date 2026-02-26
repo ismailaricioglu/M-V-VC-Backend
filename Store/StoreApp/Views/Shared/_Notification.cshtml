@@ -1,0 +1,32 @@
+@*
+    <summary>
+    TempData'da bulunan bilgi, baþarý ve hata mesajlarýný kullanýcýya gösterir.
+    </summary>
+    <remarks>
+    - TempData["info"] varsa, mavi renkli bilgi mesajý kutusu gösterilir.
+    - TempData["success"] varsa, yeþil renkli baþarý mesajý kutusu gösterilir.
+    - TempData["danger"] varsa, kýrmýzý renkli hata mesajý kutusu gösterilir.
+    Bu yapý, Bootstrap uyarý (alert) sýnýflarý ile stil verilmiþ mesaj kutularýdýr.
+    TempData sadece bir kez okunabilir, bu nedenle her biri ayrý ayrý kontrol edilir.
+    </remarks>
+*@
+@if (TempData["info"] is not null)
+{
+    <div class="alert alert-info my-3" role="alert">
+        @TempData["info"]
+    </div>
+}
+
+@if (TempData["success"] is not null)
+{
+    <div class="alert alert-success my-3" role="alert">
+        @TempData["success"]
+    </div>
+}
+
+@if (TempData["danger"] is not null)
+{
+    <div class="alert alert-danger my-3" role="alert">
+        @TempData["danger"]
+    </div>
+}
