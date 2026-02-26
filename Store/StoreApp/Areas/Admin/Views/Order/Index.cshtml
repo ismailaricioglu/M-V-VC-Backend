@@ -1,0 +1,28 @@
+@* 
+    Özet (Summary):
+    Bu Razor view, model olarak gelen sipariþ listesini (IEnumerable<Order>) ekrana yansýtýr.
+
+    - Eðer modelde bir veya daha fazla sipariþ varsa, her sipariþ için _OrderDetails adlý partial view çaðrýlýr.
+    - Eðer hiç sipariþ yoksa, kullanýcýya bilgi mesajý (alert-info) gösterilir.
+
+    Notlar:
+    - Model null deðildir ve IEnumerable<Order> tipindedir.
+    - '_OrderDetails' partial view'i, tek bir Order nesnesinin detaylarýný gösterecek þekilde yapýlandýrýlmýþ olmalýdýr.
+*@
+@model IEnumerable<Order>
+
+@if (Model.Count() > 0)
+{
+    @foreach (Order order in Model)
+    {
+        <div class="my-3">
+            <partial name="_OrderDetails" model="@order" />
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-info">
+        <p class="lead">There is no order yet.</p>
+    </div>
+}

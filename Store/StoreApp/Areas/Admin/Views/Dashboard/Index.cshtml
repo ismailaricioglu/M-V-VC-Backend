@@ -1,0 +1,10 @@
+<div class="text-center my-5 border-bottom">
+    <div class="display-6">Dashboard</div>
+</div>
+
+<div class="my-5">
+    <partial name="_Cards" />
+</div>
+
+<!-- Vitrin ürünlerini "List" adlý özel görünümle getir -->
+@await Component.InvokeAsync("Showcase", new { page = "list" })
