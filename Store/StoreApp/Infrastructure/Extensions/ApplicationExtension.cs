@@ -7,10 +7,10 @@ namespace StoreApp.Infrastructure.Extensions
     public static class ApplicationExtension
     {
         /// <summary>
-        /// Uygulama baþlatýldýðýnda, veritabanýnda bekleyen göç (migration) iþlemleri olup olmadýðýný kontrol eder
-        /// ve varsa bunlarý otomatik olarak uygular.
+        /// Uygulama baï¿½latï¿½ldï¿½ï¿½ï¿½nda, veritabanï¿½nda bekleyen gï¿½ï¿½ (migration) iï¿½lemleri olup olmadï¿½ï¿½ï¿½nï¿½ kontrol eder
+        /// ve varsa bunlarï¿½ otomatik olarak uygular.
         /// </summary>
-        /// <param name="app">Uygulamanýn IApplicationBuilder örneði.</param>
+        /// <param name="app">Uygulamanï¿½n IApplicationBuilder ï¿½rneï¿½i.</param>
         public static void ConfigureAndCheckMigration(this IApplicationBuilder app)
         {
             RepositoryContext context = app
@@ -27,11 +27,11 @@ namespace StoreApp.Infrastructure.Extensions
 
 
         /// <summary>
-        /// Uygulama için yerelleþtirme (localization) ayarlarýný yapýlandýrýr.
-        /// Varsayýlan kültürü "tr-TR" olarak belirler ve yalnýzca bu kültürü desteklenen dil olarak tanýmlar.
-        /// Bu ayar, kültüre duyarlý içeriklerin (tarih, sayý, metin vb.) uygun formatta sunulmasýný saðlar.
+        /// Uygulama iï¿½in yerelleï¿½tirme (localization) ayarlarï¿½nï¿½ yapï¿½landï¿½rï¿½r.
+        /// Varsayï¿½lan kï¿½ltï¿½rï¿½ "tr-TR" olarak belirler ve yalnï¿½zca bu kï¿½ltï¿½rï¿½ desteklenen dil olarak tanï¿½mlar.
+        /// Bu ayar, kï¿½ltï¿½re duyarlï¿½ iï¿½eriklerin (tarih, sayï¿½, metin vb.) uygun formatta sunulmasï¿½nï¿½ saï¿½lar.
         /// </summary>
-        /// <param name="app">Yerelleþtirme ayarlarýnýn uygulanacaðý WebApplication örneði.</param>
+        /// <param name="app">Yerelleï¿½tirme ayarlarï¿½nï¿½n uygulanacaï¿½ï¿½ WebApplication ï¿½rneï¿½i.</param>
         public static void ConfigureLocalization(this WebApplication app)
         {
             app.UseRequestLocalization(options =>
@@ -43,64 +43,64 @@ namespace StoreApp.Infrastructure.Extensions
         }
 
         /// <summary>
-        /// Uygulama baþlatýldýðýnda varsayýlan bir admin kullanýcýsý oluþturur.
-        /// Eðer "Admin" kullanýcý adýyla bir kullanýcý yoksa, yeni bir IdentityUser oluþturur,
-        /// þifre belirler ve veritabanýnda mevcut rollerin tümüne bu kullanýcýyý dahil eder.
+        /// Uygulama baï¿½latï¿½ldï¿½ï¿½ï¿½nda varsayï¿½lan bir admin kullanï¿½cï¿½sï¿½ oluï¿½turur.
+        /// Eï¿½er "Admin" kullanï¿½cï¿½ adï¿½yla bir kullanï¿½cï¿½ yoksa, yeni bir IdentityUser oluï¿½turur,
+        /// ï¿½ifre belirler ve veritabanï¿½nda mevcut rollerin tï¿½mï¿½ne bu kullanï¿½cï¿½yï¿½ dahil eder.
         /// </summary>
-        /// <param name="app">IApplicationBuilder: Uygulamanýn yapýlandýrýlmasýný saðlayan nesne.</param>
-        /// <exception cref="Exception">Eðer kullanýcý oluþturulamaz veya roller atanamazsa özel bir hata fýrlatýlýr.</exception>
+        /// <param name="app">IApplicationBuilder: Uygulamanï¿½n yapï¿½landï¿½rï¿½lmasï¿½nï¿½ saï¿½layan nesne.</param>
+        /// <exception cref="Exception">Eï¿½er kullanï¿½cï¿½ oluï¿½turulamaz veya roller atanamazsa ï¿½zel bir hata fï¿½rlatï¿½lï¿½r.</exception>
         public static async void ConfigureDefaultAdminUser(this IApplicationBuilder app)
         {
-            // Admin kullanýcýsý için sabit kullanýcý adý
+            // Admin kullanï¿½cï¿½sï¿½ iï¿½in sabit kullanï¿½cï¿½ adï¿½
             const string adminUser = "Admin";
 
-            // Admin kullanýcýsý için sabit þifre
+            // Admin kullanï¿½cï¿½sï¿½ iï¿½in sabit ï¿½ifre
             const string adminPassword = "Admin+123456";
 
-            // UserManager servisini almak için uygulama servislerinden yeni bir scope (yaþam süresi) oluþturulur
+            // UserManager servisini almak iï¿½in uygulama servislerinden yeni bir scope (yaï¿½am sï¿½resi) oluï¿½turulur
             UserManager<IdentityUser> userManager = app
                 .ApplicationServices
                 .CreateScope()
                 .ServiceProvider
                 .GetRequiredService<UserManager<IdentityUser>>();
 
-            // RoleManager servisini almak için yine bir scope oluþturulur (CreateAsyncScope kullanýlmýþ, alternatif olarak CreateScope da kullanýlabilir)
+            // RoleManager servisini almak iï¿½in yine bir scope oluï¿½turulur (CreateAsyncScope kullanï¿½lmï¿½ï¿½, alternatif olarak CreateScope da kullanï¿½labilir)
             RoleManager<IdentityRole> roleManager = app
                 .ApplicationServices
                 .CreateAsyncScope()
                 .ServiceProvider
                 .GetRequiredService<RoleManager<IdentityRole>>();
 
-            // Belirtilen kullanýcý adýyla sistemde bir kullanýcý olup olmadýðý kontrol edilir
+            // Belirtilen kullanï¿½cï¿½ adï¿½yla sistemde bir kullanï¿½cï¿½ olup olmadï¿½ï¿½ï¿½ kontrol edilir
             IdentityUser user = await userManager.FindByNameAsync(adminUser);
 
-            // Eðer böyle bir kullanýcý yoksa, yeni bir admin kullanýcýsý oluþturulacak
+            // Eï¿½er bï¿½yle bir kullanï¿½cï¿½ yoksa, yeni bir admin kullanï¿½cï¿½sï¿½ oluï¿½turulacak
             if (user is null)
             {
-                // Admin kullanýcýsýnýn temel bilgileri tanýmlanýr
+                // Admin kullanï¿½cï¿½sï¿½nï¿½n temel bilgileri tanï¿½mlanï¿½r
                 user = new IdentityUser()
                 {
-                    Email = "zcomert@samsun.edu.tr",         // Admin e-posta adresi
-                    PhoneNumber = "5061112233",              // Admin telefon numarasý
-                    UserName = adminUser                     // Kullanýcý adý
+                    Email = "adminname@xmail.com",           // Admin e-posta adresi
+                    PhoneNumber = "5061112233",              // Admin telefon numarasï¿½
+                    UserName = adminUser                     // Kullanï¿½cï¿½ adï¿½
                 };
 
-                // Belirtilen þifre ile kullanýcý oluþturulmaya çalýþýlýr
+                // Belirtilen ï¿½ifre ile kullanï¿½cï¿½ oluï¿½turulmaya ï¿½alï¿½ï¿½ï¿½lï¿½r
                 var result = await userManager.CreateAsync(user, adminPassword);
 
-                // Kullanýcý oluþturulamazsa hata fýrlatýlýr
+                // Kullanï¿½cï¿½ oluï¿½turulamazsa hata fï¿½rlatï¿½lï¿½r
                 if (!result.Succeeded)
                     throw new Exception("Admin user could not created.");
 
-                // Veritabanýndaki tüm rolleri getirip admin kullanýcýsýna atama yapýlýr
+                // Veritabanï¿½ndaki tï¿½m rolleri getirip admin kullanï¿½cï¿½sï¿½na atama yapï¿½lï¿½r
                 var roleResult = await userManager.AddToRolesAsync(user,
                     roleManager
-                        .Roles                     // Mevcut roller alýnýr
-                        .Select(r => r.Name)       // Roller yalnýzca ad (string) olarak seçilir
+                        .Roles                     // Mevcut roller alï¿½nï¿½r
+                        .Select(r => r.Name)       // Roller yalnï¿½zca ad (string) olarak seï¿½ilir
                         .ToList()                  // Liste haline getirilir
                 );
 
-                // Eðer rol atama iþlemi baþarýsýz olursa hata fýrlatýlýr
+                // Eï¿½er rol atama iï¿½lemi baï¿½arï¿½sï¿½z olursa hata fï¿½rlatï¿½lï¿½r
                 if (!roleResult.Succeeded)
                     throw new Exception("System have problems with role defination for admin.");
             }
